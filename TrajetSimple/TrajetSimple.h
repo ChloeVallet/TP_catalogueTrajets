@@ -15,6 +15,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+enum moyenTransport {AUTO, BATEAU, AVION, TRAIN};
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
@@ -33,7 +34,6 @@ public:
     //
     // Contrat :
     //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
@@ -66,7 +66,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char* typeTransport;
+    moyenTransport typeTransport;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>
