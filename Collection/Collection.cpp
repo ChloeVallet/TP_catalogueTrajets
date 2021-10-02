@@ -37,6 +37,10 @@ void Collection::Ajouter (Trajet * trajetAAjouter)
 
 unsigned int Collection::Ajuster (int delta)
 // Algorithme :
+// On ajuste la taille du tableau de Trajet lorsque l'on souhaite
+// ajouter un trajet dans ce dernier lorsqu'il est plein, sinon on ajuste
+// simplement la taille du tableau au plus juste.
+//
 {
     if(delta == 0) return tailleMax;
     int newtailleMax = tailleMax + delta;
@@ -46,7 +50,7 @@ unsigned int Collection::Ajuster (int delta)
     }
     else
     {
-        tailleMax = tailleCourante; // Au plus juste si l'ajustement n'est pas fait dans le cadre d'un ajout
+        tailleMax = tailleCourante;
     }
     Trajet * newCollectionTrajets = new Trajet [ tailleMax ];
     for (int i = 0; i < tailleCourante; i++)

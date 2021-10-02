@@ -44,7 +44,7 @@ public:
     // Contrat :
     //
 
-    virtual void Afficher()=0;
+    virtual void Afficher() = 0;
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
