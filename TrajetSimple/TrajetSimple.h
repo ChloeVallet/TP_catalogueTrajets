@@ -1,10 +1,10 @@
-/*************************************************************************
+/*********************************************************************************
                            TrajetSimple  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $ANNEE$ par $AUTEUR$
-    e-mail               : $EMAIL$
-*************************************************************************/
+    début                : 30/09/2021
+    copyright            : (C) 2021 par Jibril Gharib & Chloé VALLET
+    e-mail               : jibril.gharib@insa-lyon.fr / chloe.vallet@insa-lyon.fr
+**********************************************************************************/
 
 //---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
 #if ! defined ( TRAJETSIMPLE_H )
@@ -42,7 +42,7 @@ public:
     // Contrat :
     //
 
-    TrajetSimple (const char* villeD="", const char* villeA="", const char* moyenTransport="" );
+    TrajetSimple (const char* villeD= nullptr, const char* villeA= nullptr, moyenTransport transport=AUTO);
     // Mode d'emploi :
     //
     // Contrat :

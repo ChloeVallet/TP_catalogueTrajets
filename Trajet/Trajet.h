@@ -1,11 +1,11 @@
-/*************************************************************************
-                           Trajet  -  Classe abstraite permettant le polymophisme entre
-                           deux classes dérivées (TrajetSimple et TrajetComposé).
+/***********************************************************************************
+         Trajet  -  Classe abstraite permettant le polymophisme entre
+            deux classes dérivées (TrajetSimple et TrajetComposé).
                              -------------------
-    début                : $DATE$
-    copyright            : (C) 2021 par Vallet Gharib
-    e-mail               : $EMAIL$
-*************************************************************************/
+    début                : 30/09/2021
+    copyright            : (C) 2021 par Jibril Gharib & Chloé VALLET
+    e-mail               : jibril.gharib@insa-lyon.fr / chloe.vallet@insa-lyon.fr
+************************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( TRAJET_H )

@@ -25,7 +25,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Collection::Ajouter (Trajet * trajetAAjouter)
 // Algorithme :
-//Si la collection est pleine, on réajuste sa taille de 1 case supplémentaire
+// Si la collection est pleine, on réajuste sa taille de 1 case supplémentaire
 {
     if(tailleCourante == tailleMax)
     {
@@ -52,7 +52,7 @@ unsigned int Collection::Ajuster (int delta)
     {
         tailleMax = tailleCourante;
     }
-    Trajet * newCollectionTrajets = new Trajet [ tailleMax ];
+    Trajet ** newCollectionTrajets = new Trajet [ tailleMax ];
     for (int i = 0; i < tailleCourante; i++)
     {
         newCollectionTrajets[i] = trajets[i];
@@ -61,6 +61,13 @@ unsigned int Collection::Ajuster (int delta)
     trajets = newCollectionTrajets;
     return tailleMax;
 }//----- Fin de Ajuster
+
+void Collection::Afficher()
+{
+    for (int i = 0; i < tailleCourante; ++i) {
+        trajets[i]->Afficher();
+    }
+}
 
 
 //-------------------------------------------- Constructeurs - destructeur

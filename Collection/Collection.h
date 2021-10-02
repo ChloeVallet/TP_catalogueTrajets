@@ -11,6 +11,7 @@
 #define COLLECTION_H
 
 //--------------------------------------------------------- Interfaces utilisées
+#include "../Trajet/Trajet.h"
 
 //------------------------------------------------------------------- Constantes
 const unsigned int TAILLE_MAX_INIT = 10;
@@ -29,12 +30,17 @@ class Collection
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Ajouter (Trajet trajetAAjouter);
+    void Ajouter (Trajet * trajetAAjouter);
     // Mode d'emploi :
     //
     // Contrat :
 
     unsigned int Ajuster (int delta);
+    // Mode d'emploi :
+    //
+    // Contrat :
+
+    void Afficher();
     // Mode d'emploi :
     //
     // Contrat :
@@ -60,7 +66,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     unsigned int tailleMax;
     unsigned int tailleCourante;
-    Trajet * trajets;
+    Trajet ** trajets;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Collection>

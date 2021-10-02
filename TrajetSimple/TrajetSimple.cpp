@@ -1,10 +1,10 @@
-/*************************************************************************
+/*********************************************************************************
                            TrajetSimple  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $ANNEE$ par $AUTEUR$
-    e-mail               : $EMAIL$
-*************************************************************************/
+    début                : 30/09/2021
+    copyright            : (C) 2021 par Jibril Gharib & Chloé VALLET
+    e-mail               : jibril.gharib@insa-lyon.fr / chloe.vallet@insa-lyon.fr
+*********************************************************************************/
 
 //---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
 
@@ -36,14 +36,7 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 //
 :Trajet(unTrajetSimple)
 {
-
-    /*villeDepart = new char[strlen(unTrajetSimple.villeDepart)+1];
-    villeArrive = new char[strlen(unTrajetSimple.villeArrive)+1];*/
-    typeTransport = new char[strlen(unTrajetSimple.typeTransport)+1];
-
-    /*strcpy(villeDepart, unTrajetSimple.villeDepart);
-    strcpy(villeArrive, unTrajetSimple.villeArrive);*/
-    strcpy(typeTransport, unTrajetSimple.typeTransport);
+    typeTransport = unTrajetSimple.typeTransport;
 
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
@@ -51,21 +44,12 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 } //----- Fin de TrajetSimple (constructeur de copie)
 
 
-TrajetSimple::TrajetSimple (char* villeD, char* villeA, char* moyenTransport )
+TrajetSimple::TrajetSimple (const char* villeD, const char* villeA, moyenTransport transport )
 // Algorithme :
 //
 :Trajet(villeD, villeA)
 {
-    if(moyenTransport != nullptr)
-    {
-        typeTransport = new char[strlen(moyenTransport)+1];
-        strcpy(typeTransport, moyenTransport);
-    }else
-    {
-        cout << "Moyen de transport non valide lors de l'appel au constrcteur "
-        << "de <TrajetSimple> (pointeur null)"<<endl;
-    }
-
+    typeTransport = transport;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
@@ -75,15 +59,28 @@ void TrajetSimple::Afficher()
 // Algorithme :
 //
 {
-    cout << "Ville de départ: " << villeDepart << ", ville d'arrive: " << villeArrive
-    << " via " << typeTransport << endl;
+    cout << "Ville de départ: " << villeDepart << ", ville d'arrive: " << villeArrive;
+    switch (typeTransport) {
+        case AUTO :
+            cout << "en voiture" << endl;
+            break;
+        case BATEAU :
+            cout << "en bateau" << endl;
+            break;
+        case AVION :
+            cout << "en avion" << endl;
+            break;
+        case TRAIN:
+            cout << "en train" << endl;
+            break;
+    }
 }//----- Fin de Afficher
 
 TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //
 {
-    delete [] typeTransport;
+    //delete typeTransport;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif

@@ -1,11 +1,10 @@
-/*************************************************************************
-                           Trajet  -    Définition des méthodes de la classe
-                           Trajet
+/********************************************************************************
+                 Trajet  -    Définition des méthodes de la classe
                              -------------------
-    début                : $DATE$
-    copyright            : (C) 2021 par Vallet Gharib
-    e-mail               : $EMAIL$
-*************************************************************************/
+    début             : 30/09/2021
+    copyright         : (C) 2021 par Jibril Gharib & Chloé VALLET
+    e-mail            : jibril.gharib@insa-lyon.fr / chloe.vallet@insa-lyon.fr
+********************************************************************************/
 
 //---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
 
