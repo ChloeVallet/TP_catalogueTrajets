@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
 
-    Trajet (const char* villeD="", const char* villeA="" );
+    Trajet (const char* villeD= nullptr, const char* villeA= nullptr );
     // Mode d'emploi :
     //
     // Contrat :
