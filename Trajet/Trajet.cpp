@@ -47,23 +47,17 @@ Trajet::Trajet ( const Trajet & unTrajet )
 } //----- Fin de Trajet (constructeur de copie)
 
 
-Trajet::Trajet (const char* villeD, const char* villeA )
+Trajet::Trajet (const char* villeD , const char* villeA)
 // Algorithme :
 // Copie du paramètre villeD dans l'attribut villeDepart et idem pour villeArrive
 {
-    if(villeD != nullptr && villeA != nullptr)
-    {
-        villeDepart = new char[strlen(villeD)+1];
-        villeArrive = new char[strlen(villeA)+1];
 
-        strcpy(villeDepart,villeD);
-        strcpy(villeArrive, villeA);
+    villeDepart = new char[strlen(villeD)+1];
+    villeArrive = new char[strlen(villeA)+1];
 
-    }else
-    {
-        cout << "Une des deux villes n'est pas valides lors de l'appel au constructeur "
-             << "de <Trajet> (pointeur null)"<<endl;
-    }
+    strcpy(villeDepart,villeD);
+    strcpy(villeArrive, villeA);
+
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif

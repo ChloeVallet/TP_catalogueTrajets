@@ -34,22 +34,19 @@ using namespace std;
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 // Algorithme :
 //
-:Trajet(unTrajetSimple)
+:Trajet(unTrajetSimple), typeTransport(unTrajetSimple.typeTransport)
 {
-    typeTransport = unTrajetSimple.typeTransport;
-
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
 } //----- Fin de TrajetSimple (constructeur de copie)
 
 
-TrajetSimple::TrajetSimple (const char* villeD, const char* villeA, moyenTransport transport )
+TrajetSimple::TrajetSimple (const char* villeD, const char* villeA, moyenTransport transport)
 // Algorithme :
 //
-:Trajet(villeD, villeA)
+: Trajet(villeD, villeA), typeTransport(transport)
 {
-    typeTransport = transport;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
@@ -59,19 +56,22 @@ void TrajetSimple::Afficher()
 // Algorithme :
 //
 {
-    cout << "Ville de départ: " << villeDepart << ", ville d'arrive: " << villeArrive;
+    cout << "Ville de départ: " << villeDepart << ", ville d'arrivée: " << villeArrive;
     switch (typeTransport) {
         case AUTO :
-            cout << "en voiture" << endl;
+            cout << ", transport : voiture" << endl;
             break;
         case BATEAU :
-            cout << "en bateau" << endl;
+            cout << ", transport : bateau" << endl;
             break;
         case AVION :
-            cout << "en avion" << endl;
+            cout << ", transport : avion" << endl;
             break;
         case TRAIN:
-            cout << "en train" << endl;
+            cout << ", transport : train" << endl;
+            break;
+        default:
+            cout << ", transport : autre" << endl;
             break;
     }
 }//----- Fin de Afficher

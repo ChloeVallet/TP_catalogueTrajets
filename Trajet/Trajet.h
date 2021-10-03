@@ -44,17 +44,18 @@ public:
     // Contrat :
     //
 
+    Trajet (const char* villeD = "-", const char* villeA = "-");
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual void Afficher() = 0;
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Trajet (const char* villeD= nullptr, const char* villeA= nullptr );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~Trajet ( );
     // Mode d'emploi :

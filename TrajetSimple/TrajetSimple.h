@@ -15,7 +15,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-enum moyenTransport {AUTO, BATEAU, AVION, TRAIN};
+enum moyenTransport {AUTO, BATEAU, AVION, TRAIN, AUTRE};
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
@@ -42,7 +42,7 @@ public:
     // Contrat :
     //
 
-    TrajetSimple (const char* villeD= nullptr, const char* villeA= nullptr, moyenTransport transport=AUTO);
+    TrajetSimple (const char* villeD , const char* villeA, moyenTransport transport = AUTRE);
     // Mode d'emploi :
     //
     // Contrat :

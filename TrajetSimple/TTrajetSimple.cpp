@@ -33,9 +33,22 @@ static void testConstructeur1()
 {
     char * villeDepart = (char*) "Lyon";
     char * villeArrivee = (char*) "Marseille";
-    TrajetSimple tSimple(villeDepart, villeArrivee,AUTO);
+    TrajetSimple tSimple(villeDepart, villeArrivee,BATEAU);
     tSimple.Afficher();
 } //----- fin de testConstructeur1
+
+static void testConstructeur2()
+// Mode d'emploi :
+//
+// Contrat :
+//
+// Algorithme :
+//
+{
+    TrajetSimple tSimple;
+    tSimple.Afficher();
+} //----- fin de testConstructeur1
+
 
 static void testConstructeur()
 // Mode d'emploi :
@@ -46,6 +59,7 @@ static void testConstructeur()
 //
 {
     testConstructeur1();
+    testConstructeur2();;
 } //----- fin de testConstructeur
 
 //////////////////////////////////////////////////////////////////  PUBLIC
