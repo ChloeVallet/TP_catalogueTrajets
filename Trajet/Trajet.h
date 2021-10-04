@@ -16,6 +16,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+enum resultatComparaison {DEPARTS_EGAUX, ARRIVEES_EGALES, DEPARTS_ARRIVEES_EGAUX, DIFFERENTS};
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
@@ -30,19 +31,35 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual bool EstValide() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    bool ProchainTrajetValidePossible( const Trajet & unTrajet ) const;
+    // Mode d'emploi :
+    // Méthode interessante dans la classe TrajetCompose pour verifier que
+    // les différents trajets simples qui composent ce trajet composé sont
+    // s'enchainent correctement (ville d'arrivée du précédent == ville de départ
+    // du suivant)
+    // Ce service n'a pas d'interet particulier pour un objet de type TrajetSimple
+    // Contrat :
+    //
 
-//-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
-    // Mode d'emploi (constructeur de copie) :
+    resultatComparaison Comparer (const Trajet & unTrajet) const;
+    // Mode d'emploi :
     //
     // Contrat :
     //
+
+    resultatComparaison Comparer (const char * depart, const char * arrivee) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+//-------------------------------------------- Constructeurs - destructeur
 
     Trajet (const char* villeD = "-", const char* villeA = "-");
     // Mode d'emploi :
@@ -50,7 +67,7 @@ public:
     // Contrat :
     //
 
-    virtual void Afficher() = 0;
+    virtual void Afficher() const = 0;
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :

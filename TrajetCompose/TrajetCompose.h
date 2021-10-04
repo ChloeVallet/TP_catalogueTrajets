@@ -29,40 +29,28 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual bool EstValide () const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    virtual void Afficher() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    bool Ajouter(Trajet* trajetAAjouter);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetCompose ( const TrajetCompose & unTrajetCompose );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    TrajetCompose (unsigned int unTailleMax);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual void Afficher();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void Ajouter(Trajet* trajetAAjouter);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    bool estValide(Trajet* trajetAAjouter);
+    TrajetCompose (const char* villeD = "-" , const char* villeA = "-", unsigned int unTailleMax = TAILLE_MAX_INIT );
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,7 +68,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-Collection* trajetsSimple;
+    Collection * trajetsSimple;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetCompose>

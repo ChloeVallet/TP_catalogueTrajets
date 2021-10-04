@@ -23,23 +23,27 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Collection::Ajouter (Trajet * trajetAAjouter)
+bool Collection::Ajouter (Trajet * trajetAAjouter)
 // Algorithme :
 // Si la collection est pleine, on réajuste sa taille de 1 case supplémentaire
 {
-    if(tailleCourante == tailleMax)
+    if(trajetAAjouter->EstValide())
     {
-        Ajuster(1);
+        if(tailleCourante == tailleMax)
+        {
+            Ajuster(1);
+        }
+        trajets[tailleCourante] = trajetAAjouter;
+        tailleCourante++;
+        return true;
     }
-    trajets[tailleCourante] = trajetAAjouter;
-    tailleCourante++;
+    delete trajetAAjouter;
+    return false;
+
 }//----- Fin de Ajouter
 
 unsigned int Collection::Ajuster (int delta)
 // Algorithme :
-// On ajuste la taille du tableau de Trajet lorsque l'on souhaite
-// ajouter un trajet dans ce dernier lorsqu'il est plein, sinon on ajuste
-// simplement la taille du tableau au plus juste.
 //
 {
     if(delta == 0) return tailleMax;
@@ -52,7 +56,7 @@ unsigned int Collection::Ajuster (int delta)
     {
         tailleMax = tailleCourante;
     }
-    Trajet ** newCollectionTrajets = new Trajet [ tailleMax ];
+    Trajet ** newCollectionTrajets = new Trajet * [ tailleMax ];
     for (int i = 0; i < tailleCourante; i++)
     {
         newCollectionTrajets[i] = trajets[i];
@@ -62,16 +66,60 @@ unsigned int Collection::Ajuster (int delta)
     return tailleMax;
 }//----- Fin de Ajuster
 
-void Collection::Afficher()
+void Collection::Afficher() const
+// Algorithme :
+//
 {
+    cout << "Taille courante : " << tailleCourante << endl;
+    cout << "Taille max : " << tailleMax << endl;
+    cout << "Tableau de trajets :" << endl;
+    cout << "{";
     for (int i = 0; i < tailleCourante; ++i) {
+        if(i == 0){
+            cout << endl;
+        }
+        cout << "   " << i << " : ";
         trajets[i]->Afficher();
     }
-}
+    cout << "}" << endl;
+}//----- Fin de Afficher
 
+bool Collection::EstVide() const
+// Algorithme :
+//
+{
+    if(tailleCourante == 0){
+        return true;
+    }
+    return false;
+}//----- Fin de EstVide
+
+Trajet * Collection::DernierElement() const
+// Algorithme :
+//
+{
+    return trajets[tailleCourante - 1];
+}//----- Fin de DernierElement
+
+void Collection::RechercheBasiqueDeTrajet( const char * depart, const char * arrivee) const
+// Algorithme :
+//
+{
+    cout << "{" << endl;
+    for (int i = 0; i < tailleCourante; ++i) {
+        if((trajets[i]->Comparer(depart, arrivee)) == DEPARTS_ARRIVEES_EGAUX)
+        {
+            cout << "   ";
+            trajets[i]->Afficher();
+        }
+    }
+    cout << "}" << endl;
+
+} //----- Fin de RechercheBasiqueDeTrajet
 
 //-------------------------------------------- Constructeurs - destructeur
-Collection::Collection ( unsigned int tailleMaxInitiale );
+
+Collection::Collection ( unsigned int tailleMaxInitiale )
 // Algorithme :
 //
 {
@@ -80,7 +128,7 @@ Collection::Collection ( unsigned int tailleMaxInitiale );
 #endif
     tailleCourante = 0;
     tailleMax = tailleMaxInitiale;
-    trajets = new Trajet [ tailleMax ];
+    trajets = new Trajet * [ tailleMax ];
 } //----- Fin de Collection
 
 
@@ -91,7 +139,10 @@ Collection::~Collection ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Collection>" << endl;
 #endif
-    delete [ ] trajets;
+    for (int i = 0; i < tailleCourante; ++i) {
+        delete trajets[i];
+    }
+    delete [] trajets;
 } //----- Fin de ~Collection
 
 

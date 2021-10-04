@@ -29,30 +29,25 @@ class TrajetSimple : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual bool EstValide () const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    virtual void Afficher() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple ( const TrajetSimple & unTrajetSimple );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    TrajetSimple (const char* villeD , const char* villeA, moyenTransport transport = AUTRE);
+    TrajetSimple (const char* villeD = "-", const char* villeA = "-", moyenTransport transport = AUTRE);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual void Afficher();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :

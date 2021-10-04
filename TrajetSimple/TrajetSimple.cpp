@@ -23,24 +23,21 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetSimple::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
+bool TrajetSimple::EstValide() const{
+#ifdef MAP
+    cout << "Appel au constructeur de la méthode estValide de <TrajetSimple>" << endl;
+#endif
+    if(Trajet::EstValide() && typeTransport != AUTRE)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+} //----- Fin de EstValide
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
-// Algorithme :
-//
-:Trajet(unTrajetSimple), typeTransport(unTrajetSimple.typeTransport)
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
-#endif
-} //----- Fin de TrajetSimple (constructeur de copie)
-
 
 TrajetSimple::TrajetSimple (const char* villeD, const char* villeA, moyenTransport transport)
 // Algorithme :
@@ -52,7 +49,7 @@ TrajetSimple::TrajetSimple (const char* villeD, const char* villeA, moyenTranspo
 #endif
 } //----- Fin de TrajetSimple
 
-void TrajetSimple::Afficher()
+void TrajetSimple::Afficher() const
 // Algorithme :
 //
 {

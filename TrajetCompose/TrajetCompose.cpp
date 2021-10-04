@@ -23,36 +23,76 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetCompose::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//-------------------------------------------- Constructeurs - destructeur
-TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
+bool TrajetCompose::EstValide() const
 // Algorithme :
 //
 {
-    trajetsSimple = new Collection(unTrajetCompose.trajetsSimple->tailleMax);
-    trajetsSimple->tailleMax = unTrajetCompose.trajetsSimple->tailleMax;
-    //trajetsSimple->tailleCourante = unTrajetCompose.trajetsSimple->tailleCourante;
-    for(int i =0;i<tailleCourante;i++)
+    if(trajetsSimple->EstVide())
     {
-        trajetsSimple->Ajouter(unTrajetCompose.trajetsSimple->trajets[i]);
+        return Trajet::EstValide();
+
     }
+    else
+    {
+        if(Comparer(*(trajetsSimple->DernierElement())) == ARRIVEES_EGALES)
+        {
+            return true;
+        }
+    }
+    return false;
+} //----- Fin de EstValide
 
 
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
-#endif
-} //----- Fin de TrajetCompose (constructeur de copie)
+bool TrajetCompose::Ajouter(Trajet* trajetAAjouter)
+// Algorithme :
+// On ne peut ajouter que des trajets qui s'enchainent
+{
+    if(!Trajet::EstValide())
+    {
+        delete trajetAAjouter;
+        return false;
+    }
+    else{
+        if(trajetsSimple->EstVide()){
+            if(Comparer(*(trajetAAjouter)) == DEPARTS_EGAUX){
+                if(trajetsSimple->Ajouter(trajetAAjouter)){
+                    return true;
+                }
+                delete trajetAAjouter;
+                return false;
+            }
+            delete trajetAAjouter;
+            return false;
+        }
+        else
+        {
+            if(trajetsSimple->DernierElement()->ProchainTrajetValidePossible(*(trajetAAjouter))){
+                if(trajetsSimple->Ajouter(trajetAAjouter)){
+                    return true;
+                }
+                delete trajetAAjouter;
+                return false;
+            }
+            delete trajetAAjouter;
+            return false;
+        }
+    }
+} //----- Fin de Ajouter
 
-
-TrajetCompose::TrajetCompose (unsigned int unTailleMax)
+void TrajetCompose::Afficher() const
 // Algorithme :
 //
+{
+    trajetsSimple->Afficher();
+} //----- Fin de Afficher
+
+
+//-------------------------------------------- Constructeurs - destructeur
+
+TrajetCompose::TrajetCompose (const char* villeD , const char* villeA, unsigned int unTailleMax)
+// Algorithme :
+//
+:Trajet(villeD,villeA)
 {
     trajetsSimple = new Collection(unTailleMax);
 #ifdef MAP
@@ -60,35 +100,6 @@ TrajetCompose::TrajetCompose (unsigned int unTailleMax)
 #endif
 } //----- Fin de TrajetCompose
 
-bool TrajetCompose::estValide(Trajet *trajetAAjouter)
-{
-    if(strcmp(trajetsSimple->trajets[trajetsSimple->tailleCourante-1].villeArrive,trajetAAjouter->villeDepart) == 0)
-    {
-        return true;
-    }else
-    {
-        return false;
-    }
-}
-
-void TrajetCompose::Ajouter(Trajet *trajetAAjouter)
-{
-    if(estValide(trajetAAjouter))
-    {
-        trajetsSimple->Ajouter(trajetAAjouter);
-    }else
-    {
-        cout << "Impossible d'ajouter ce trajet car non valide (ville d'arrive precedente et ville de depart de ce trajet) !" << endl;
-    }
-}
-
-void TrajetCompose::Afficher()
-{
-    for(int i = 0;i<trajetsSimple->tailleCourante;i++)
-    {
-        trajetsSimple->trajets[i]->Afficher();
-    }
-}
 
 TrajetCompose::~TrajetCompose ( )
 // Algorithme :

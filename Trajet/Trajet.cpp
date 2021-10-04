@@ -23,29 +23,81 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-
-//-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const Trajet & unTrajet )
+bool Trajet::EstValide () const
 // Algorithme :
 //
 {
-    villeDepart = new char[strlen(unTrajet.villeDepart)+1];
-    villeArrive = new char[strlen(unTrajet.villeArrive)+1];
+    if(strlen(villeDepart) == 0 || strlen(villeArrive) == 0)
+    {
+        return false;
+    }
+    else if(strcmp(villeDepart, "-") != 0 && strcmp(villeArrive,"-") != 0)
+    {
+        return true;
+    }
+    return false;
 
-    strcpy(villeDepart,unTrajet.villeDepart);
-    strcpy(villeArrive, unTrajet.villeArrive);
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Trajet>" << endl;
-#endif
-} //----- Fin de Trajet (constructeur de copie)
+} //----- Fin de EstValide
 
+bool Trajet::ProchainTrajetValidePossible(const Trajet & unTrajet) const
+// Algorithme :
+// On vérifie que unTrajet est un potentiel trajet suivant du trajet courant
+// (enchainement possible du trajet courant avec unTrajet)
+{
+    if(unTrajet.EstValide() && EstValide()){
+        if(strcmp(unTrajet.villeDepart, villeArrive) == 0){
+            return true;
+        }
+        return false;
+    }
+    return false;
+} //----- Fin de EstValide
+
+resultatComparaison Trajet::Comparer (const Trajet & unTrajet) const
+// Algorithme :
+//
+{
+    if(strcmp(unTrajet.villeDepart, villeDepart) == 0 && strcmp(unTrajet.villeArrive, villeArrive) == 0)
+    {
+        return DEPARTS_ARRIVEES_EGAUX;
+    }
+    else if(strcmp(unTrajet.villeDepart, villeDepart) == 0)
+    {
+        return DEPARTS_EGAUX;
+    }
+    else if(strcmp(unTrajet.villeArrive, villeArrive) == 0)
+    {
+        return ARRIVEES_EGALES;
+    }
+    else
+    {
+        return DIFFERENTS;
+    }
+}//----- Fin de Comparer
+
+resultatComparaison Trajet::Comparer (const char * depart, const char * arrivee) const
+// Algorithme :
+//
+{
+    if(strcmp(depart, villeDepart) == 0 && strcmp(arrivee, villeArrive) == 0)
+    {
+        return DEPARTS_ARRIVEES_EGAUX;
+    }
+    else if(strcmp(depart, villeDepart) == 0)
+    {
+        return DEPARTS_EGAUX;
+    }
+    else if(strcmp(arrivee, villeArrive) == 0)
+    {
+        return ARRIVEES_EGALES;
+    }
+    else
+    {
+        return DIFFERENTS;
+    }
+}//----- Fin de Comparer
+
+//-------------------------------------------- Constructeurs - destructeur
 
 Trajet::Trajet (const char* villeD , const char* villeA)
 // Algorithme :

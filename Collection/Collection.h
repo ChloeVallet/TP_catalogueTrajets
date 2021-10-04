@@ -12,6 +12,7 @@
 
 //--------------------------------------------------------- Interfaces utilisées
 #include "../Trajet/Trajet.h"
+#include "../TrajetSimple/TrajetSimple.h"
 
 //------------------------------------------------------------------- Constantes
 const unsigned int TAILLE_MAX_INIT = 10;
@@ -30,7 +31,7 @@ class Collection
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Ajouter (Trajet * trajetAAjouter);
+    bool Ajouter (Trajet * trajetAAjouter);
     // Mode d'emploi :
     //
     // Contrat :
@@ -40,13 +41,29 @@ public:
     //
     // Contrat :
 
-    void Afficher();
+    void Afficher() const;
     // Mode d'emploi :
     //
     // Contrat :
 
+    bool EstVide() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+
+    Trajet * DernierElement() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    // On ne doit pas appeler cette méthode lorsque la collection est vide
+    // Il faut donc appeler la fonction EstVide() avant d'appeler cette méthode
+
+    void RechercheBasiqueDeTrajet( const char * depart, const char * arrivee) const;
+
+
 //-------------------------------------------- Constructeurs - destructeur
-    Collection ( unsigned  int tailleMaxInitiale = TAILLE_MAX_INIT);
+
+    Collection ( unsigned int tailleMaxInitiale = TAILLE_MAX_INIT);
     // Mode d'emploi :
     //
     // Contrat :
