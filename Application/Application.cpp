@@ -30,6 +30,14 @@ using namespace std;
 
 //------------------------------------------------------ Fonctions privées
 
+static void saisirVilles(char * depart, char * arrivee){
+    cout << "Ville de départ : " ;
+    cin >> depart;
+    cout << endl;
+    cout << "Ville de d'arrivée : " ;
+    cin >> arrivee;
+}
+
 static moyenTransport choisirMoyenTransport()
 // Mode d'emploi :
 //
@@ -70,14 +78,10 @@ static  TrajetSimple * creerTrajetSimple()
 // Algorithme :
 //
 {
-    char * villeDepart;
-    char *  villeArrivee;
+    char villeDepart[50];
+    char villeArrivee[50];
     moyenTransport transport;
-    cout << "Ville de départ : " ;
-    cin >> villeDepart;
-    cout << endl;
-    cout << "Ville de d'arrivée : " ;
-    cin >> villeArrivee;
+    saisirVilles(villeDepart,villeArrivee);
     transport = choisirMoyenTransport();
     TrajetSimple * tSimple = new TrajetSimple(villeDepart, villeArrivee, transport);
     return tSimple;
@@ -92,16 +96,12 @@ static TrajetCompose * creerTrajetCompose()
 //
 {
     int nbTrajetSimples;
+    char villeDepart[50];
+    char villeArrivee[50];
     cout << "Combien trajets simples composent le trajet composé à créer ?" << endl;
     cin >> nbTrajetSimples;
-    char * villeDepart;
-    char *  villeArrivee;
     moyenTransport transport;
-    cout << "Ville de départ : " ;
-    cin >> villeDepart;
-    cout << endl;
-    cout << "Ville de d'arrivée : " ;
-    cin >> villeArrivee;
+    saisirVilles(villeDepart,villeArrivee);
     TrajetCompose * tCompose = new TrajetCompose(villeDepart, villeArrivee, nbTrajetSimples);
     for (int i = 0; i < nbTrajetSimples; ++i) {
         cout << "----------------------------------------------------------------" << endl;
@@ -136,33 +136,63 @@ static void ajouterTrajet(Catalogue * catalogue)
     }
 } //----- fin de ajouterTrajet
 
+static void rechercherTrajets(Catalogue * catalogue)
+{
+    char villeDepart[50];
+    char villeArrivee[50];
+    saisirVilles(villeDepart, villeArrivee);
+    catalogue->Rechercher(villeDepart,villeArrivee);
+
+}
+
+static void menuPrincipal(int * choixOptions){
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "Options :" << endl;
+    cout << "1. Ajouter un nouveau trajet au catalogue" << endl;
+    cout << "2. Consulter le catalogue" << endl;
+    cout << "3. Rechercher un trajet dans le catalogue" << endl;
+    cout << "4. Arreter le programme" << endl;
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "Saisissez votre choix : " << endl;
+    cin >> *(choixOptions);
+    cout << "Option " << *(choixOptions) << endl;
+    cout << "----------------------------------------------------------------" << endl;
+}
+
+
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 int main ()
 // Algorithme :
 //
 {
-    int choixOptions;
     Catalogue catalogue;
+    int choixOptions = 0;
     cout << "----------------------------------------------------------------" << endl;
     cout << "                     CATALOGUE DE TRAJETS                       " << endl;
     cout << "----------------------------------------------------------------" << endl;
-    cout << "Options :" << endl;
-    cout << "1. Ajouter un nouveau trajet au catalogue" << endl;
-    cout << "2. Consulter le catalogue" << endl;
-    cout << "3. Rechercher un trajet dans le catalogue" << endl;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "Saisissez votre choix : " << endl;
-    cin >> choixOptions;
-    cout << "----------------------------------------------------------------" << endl;
-
-    switch (choixOptions) {
-        case 1:
-            ajouterTrajet(&catalogue);
-            break;
-        case 2:
-            catalogue.Afficher();
-            break;
+    menuPrincipal(&choixOptions);
+    while (choixOptions == 1 || choixOptions == 2 || choixOptions == 3 ){
+        switch (choixOptions) {
+            case 1:
+                cout << "Option 1" << endl;
+                ajouterTrajet(&catalogue);
+                menuPrincipal(&choixOptions);
+                break;
+            case 2:
+                cout << "Option 2" << endl;
+                catalogue.Afficher();
+                menuPrincipal(&choixOptions);
+                break;
+            case 3:
+                cout << "Option 3" << endl;
+                rechercherTrajets(&catalogue);
+                menuPrincipal(&choixOptions);
+                break;
+            default:
+                cout << "Option 4" << endl;
+                break;
+        }
     }
     return 0;
 } //----- fin de main

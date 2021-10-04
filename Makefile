@@ -2,6 +2,12 @@ CC=g++
 CFLAGS=-ansi -pedantic -Wall -std=c++11
 
 
+Application.exe : Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o
+	$(CC) -o Application.exe Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o $(CFLAGS)
+
+Application.o: Application/Application.cpp Application/Application.h
+	$(CC) -c Application/Application.cpp
+
 
 TTrajetSimple: TTrajetSimple.o TrajetSimple.o Trajet.o
 	$(CC) -o TTrajetSimple TTrajetSimple.o TrajetSimple.o Trajet.o $(CFLAGS)
@@ -47,10 +53,3 @@ Catalogue.o: Catalogue/Catalogue.cpp Catalogue/Catalogue.h
 
 Trajet.o: Trajet/Trajet.cpp Trajet/Trajet.h
 	$(CC) -c Trajet/Trajet.cpp
-
-
-Application.exe : Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o
-	$(CC) -o Application.exe Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o $(CFLAGS)
-
-Application.o: Application/Application.cpp Application/Application.h
-	$(CC) -c Application/Application.cpp

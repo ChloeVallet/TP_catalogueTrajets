@@ -36,12 +36,17 @@ public:
     // Contrat :
     //
 
-    void Afficher();
+    void Afficher() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    void Rechercher(const char * depart, const char * arrivee) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );

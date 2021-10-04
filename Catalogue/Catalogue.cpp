@@ -25,14 +25,22 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::Ajouter(Trajet *trajetAAjouter)
+// Algorithme :
+//
 {
     collectionTrajets.Ajouter(trajetAAjouter);
-}
+}   //----- Fin de Ajouter
 
-void Catalogue::Afficher()
+void Catalogue::Afficher() const
+// Algorithme :
+//
 {
     collectionTrajets.Afficher();
-}
+} //----- Fin de Afficher
+
+void Catalogue::Rechercher(const char * depart, const char *arrivee) const {
+    collectionTrajets.RechercheBasiqueDeTrajet(depart, arrivee);
+} //----- Fin de Rechercher
 
 //-------------------------------------------- Constructeurs - destructeur
 
