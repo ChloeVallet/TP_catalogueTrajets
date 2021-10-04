@@ -34,6 +34,23 @@ Collection.o: Collection/Collection.cpp Collection/Collection.h
 	$(CC) -c Collection/Collection.cpp
 
 
+TCatalogue: TCatalogue.o Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o
+	$(CC) -o TCatalogue TCatalogue.o Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o $(CFLAGS)
+
+TCatalogue.o: Catalogue/TCatalogue.cpp Catalogue/TCatalogue.h
+	$(CC) -c Catalogue/TCatalogue.cpp
+
+Catalogue.o: Catalogue/Catalogue.cpp Catalogue/Catalogue.h
+	$(CC) -c Catalogue/Catalogue.cpp
+
+
 
 Trajet.o: Trajet/Trajet.cpp Trajet/Trajet.h
 	$(CC) -c Trajet/Trajet.cpp
+
+
+Application.exe : Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o
+	$(CC) -o Application.exe Catalogue.o Collection.o Trajet.o TrajetSimple.o TrajetCompose.o Application.o $(CFLAGS)
+
+Application.o: Application/Application.cpp Application/Application.h
+	$(CC) -c Application/Application.cpp

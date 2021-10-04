@@ -16,6 +16,9 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "TCollection.h"
 #include "Collection.h"
+#include "../Trajet/Trajet.h"
+#include "../TrajetSimple/TrajetSimple.h"
+#include "../TrajetCompose/TrajetCompose.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -500,6 +503,47 @@ static void testDernierElement()
     testDernierElement4();
 } //----- fin de testDernierElement
 
+static void testAjoutTrajetCompose1()
+{
+    cout << "---------------------------------" << endl;
+    cout << "   Test ajouter trajetCompose1   " << endl;
+    cout << "---------------------------------" << endl;
+    Collection collection;
+
+    TrajetCompose* tCompose = new TrajetCompose("LYON", "MARSEILLE",2);
+    tCompose->Ajouter(new TrajetSimple("NANTES","LYON",AUTO));
+    tCompose->Ajouter(new TrajetSimple("LYON","AJACCIO",AUTO));
+    tCompose->Ajouter(new TrajetSimple("NANTES","MARSEILLE",AUTO));
+
+
+    TrajetCompose* tCompose2 = new TrajetCompose("LYON", "MARSEILLE",2);
+    tCompose2->Ajouter(new TrajetSimple("NANTES","LYON",AUTO));
+    tCompose2->Ajouter(new TrajetSimple("LYON","AJACCIO",AUTO));
+    tCompose2->Ajouter(new TrajetSimple("AJACCIO","MARSEILLE",AUTO));
+
+
+    collection.Ajouter(tCompose);
+    collection.Ajouter(tCompose2);
+
+    cout << "Résultat attendu :" << endl;
+    cout << "Taille courante : 1" << endl;
+    cout << "Taille max : 10" << endl;
+    cout << "Tableau de trajet : " << endl << "{" << endl;
+    cout << "\tVille de départ: LYON, ville d'arrivée: AJACCIO, transport : voiture" << endl;
+    cout << "\tVille de départ: AJACCIO, ville d'arrivée: MARSEILLE, transport : voiture" << endl;
+    cout << "}" << endl;
+    cout << "Résultat obtenu : " << endl;
+    collection.Afficher();
+
+    cout << endl;
+
+}
+static void testAjoutTrajetCompose()
+{
+    testAjoutTrajetCompose1();
+} //----- fin de testAjouterTrajetCompose
+
+
 static void testRechercheBasique1()
 // Mode d'emploi :
 // Contrat :
@@ -603,5 +647,6 @@ int main ()
     testAjuster();
     testEstVide();
     testDernierElement();
+    testAjoutTrajetCompose();
     testRechercheBasique();
 } //----- fin de main

@@ -12,7 +12,6 @@
 
 //--------------------------------------------------------- Interfaces utilisées
 #include "../Trajet/Trajet.h"
-#include "../TrajetSimple/TrajetSimple.h"
 
 //------------------------------------------------------------------- Constantes
 const unsigned int TAILLE_MAX_INIT = 10;

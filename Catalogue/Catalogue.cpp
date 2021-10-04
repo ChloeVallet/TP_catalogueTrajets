@@ -43,7 +43,6 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-    collectionTrajets();
 } //----- Fin de Catalogue
 
 
@@ -54,7 +53,6 @@ Catalogue::~Catalogue ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-    delete collectionTrajets;
 } //----- Fin de ~Catalogue
 
 

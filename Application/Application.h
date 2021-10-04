@@ -1,23 +1,29 @@
 /*************************************************************************
-                           TCatalogue  -  description
+                           Xxx  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $ANNEE$ par $AUTEUR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface du module <TCatalogue> (fichier TCatalogue.h) -------------------
-#if ! defined ( TCATALOGUE_H )
-#define TCATALOGUE_H
+//---------- Interface du module <Xxx> (fichier Xxx.h) -------------------
+#if ! defined ( XXX_H )
+#define XXX_H
 
 //------------------------------------------------------------------------
-// Rôle du module <TCatalogue>
+// Rôle du module <Xxx>
 //
 //
 //------------------------------------------------------------------------
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //--------------------------------------------------- Interfaces utilisées
+#include "Application.h"
+#include "../Catalogue/Catalogue.h"
+#include "../Collection/Collection.h"
+#include "../Trajet/Trajet.h"
+#include "../TrajetSimple/TrajetSimple.h"
+#include "../TrajetCompose/TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -25,10 +31,10 @@
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-int main ();
+int main();
 // Mode d'emploi :
 //
 // Contrat :
 //
 
-#endif // TCATALOGUE_H
+#endif // XXX_H
