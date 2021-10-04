@@ -155,7 +155,6 @@ static void menuPrincipal(int * choixOptions){
     cout << "----------------------------------------------------------------" << endl;
     cout << "Saisissez votre choix : " << endl;
     cin >> *(choixOptions);
-    cout << "Option " << *(choixOptions) << endl;
     cout << "----------------------------------------------------------------" << endl;
 }
 
